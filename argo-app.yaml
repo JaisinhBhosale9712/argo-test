@@ -13,7 +13,7 @@ spec:
       values: |
         image:
           repository: jaybhosale9712/flask1
-          tag: "v2"  # Updated image tag in ArgoCD YAML
+          tag: "v3"  # Updated image tag in ArgoCD YAML
   destination:
     server: https://kubernetes.default.svc
     namespace: default
