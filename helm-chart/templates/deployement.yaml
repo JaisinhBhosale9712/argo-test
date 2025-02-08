@@ -26,4 +26,4 @@ spec:
                   name: my-secret
                   key: env1
             - name: env2
-              value: "tesst1"
+              value: "tesst111"
