@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/myusername/my-app-deploy.git'
+    repoURL: 'https://github.com/JaisinhBhosale9712/argo-test.git'
     targetRevision: main
     path: helm-chart
     helm:
