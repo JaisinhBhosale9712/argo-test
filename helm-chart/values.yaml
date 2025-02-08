@@ -5,7 +5,7 @@ app:
 
 image:
   repository: jaybhosale9712/flask1
-  tag: v2
+  tag: v3
 
 ingress:
   enabled: true
