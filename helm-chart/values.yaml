@@ -1,0 +1,12 @@
+app:
+  name: flask-app
+  replicas: 2
+  port: 5002
+
+image:
+  repository: jaybhosale9712/flask1
+  tag: v2
+
+ingress:
+  enabled: true
+  host: flask-app.example.com

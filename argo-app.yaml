@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flask-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/myusername/my-app-deploy.git'
+    targetRevision: main
+    path: helm-chart
+    helm:
+      values: |
+        image:
+          repository: jaybhosale9712/flask1
+          tag: "v2"  # Updated image tag in ArgoCD YAML
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
