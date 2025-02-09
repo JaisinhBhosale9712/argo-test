@@ -15,7 +15,7 @@ spec:
           adminPassword: "admin"  # Change this in production!
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring
+    namespace: default
   syncPolicy:
     automated:
       prune: true
