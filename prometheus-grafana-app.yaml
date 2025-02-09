@@ -1,35 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
-  namespace: argocd  # The namespace where Argo CD is installed
+  name: prometheus-grafana
+  namespace: argocd  # Argo CD should be running in this namespace
 spec:
-  destination:
-    server: https://kubernetes.default.svc  # Kubernetes API server
-    namespace: monitoring  # The namespace where Prometheus will be deployed (create this namespace if not exists)
-  project: default  # Argo CD project (you can customize it)
+  project: default
   source:
-    repoURL: https://prometheus-community.github.io/helm-charts  # The Helm chart repository URL
-    chart: prometheus  # The name of the Helm chart
-    targetRevision: "latest"  # You can specify the version of the chart (e.g., "latest" or a specific version)
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 51.2.0  # Check the latest version
     helm:
-      createNamespace: true  # Automatically creates the monitoring namespace if it doesn't exist
       values: |
-        # You can override default values here
-        serverFiles:
-          prometheus.yml:
-            global:
-              scrape_interval: 15s
-              scrape_timeout: 10s
-      # The following ensures CRDs are installed before the chart is applied
-      crds:
-        install: true  # Install CRDs automatically with the Helm chart
-    # Optionally, if you have custom values.yaml, you can reference it here.
-    # If you want to point to your custom values.yaml, replace with:
-    # helm:
-    #   valueFiles:
-    #     - path/to/custom-values.yaml
+        grafana:
+          adminPassword: "admin"  # Change this in production!
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
   syncPolicy:
     automated:
-      prune: true  # This will ensure that any deleted resources are cleaned up
-      selfHeal: true  # This will auto-heal the application if it's out of sync
+      prune: true
+      selfHeal: true
