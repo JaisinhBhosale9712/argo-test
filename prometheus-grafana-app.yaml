@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-grafana1
+  name: prometheus-grafana2
   namespace: argocd  # Argo CD should be running in this namespace
 spec:
   project: default
   source:
-    repoURL: https://prometheus-community.github.io/helm-charts
+    repoURL: 'https://prometheus-community.github.io/helm-charts'
     chart: kube-prometheus-stack
     targetRevision: 51.2.0  # Check the latest version
     helm:
