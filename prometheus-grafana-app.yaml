@@ -13,6 +13,7 @@ spec:
     chart: prometheus  # The name of the Helm chart
     targetRevision: "latest"  # You can specify the version of the chart (e.g., "latest" or a specific version)
     helm:
+      createNamespace: true  # Automatically creates the monitoring namespace if it doesn't exist
       values: |
         # You can override default values here
         serverFiles:
@@ -20,6 +21,9 @@ spec:
             global:
               scrape_interval: 15s
               scrape_timeout: 10s
+      # The following ensures CRDs are installed before the chart is applied
+      crds:
+        install: true  # Install CRDs automatically with the Helm chart
     # Optionally, if you have custom values.yaml, you can reference it here.
     # If you want to point to your custom values.yaml, replace with:
     # helm:
