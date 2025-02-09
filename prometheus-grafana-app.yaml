@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-grafana
+  name: prometheus-grafana1
   namespace: argocd  # Argo CD should be running in this namespace
 spec:
   project: default
