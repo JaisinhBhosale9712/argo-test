@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: prometheus-grafana
-  namespace: argocd  # Argo CD should be running in this namespace
+  namespace: argocd
 spec:
   project: default
   source:
@@ -13,6 +13,8 @@ spec:
       values: |
         grafana:
           adminPassword: "admin"  # Change this in production!
+      # Disable CRDs installation
+      installCRDs: false
   destination:
     server: https://kubernetes.default.svc
     namespace: default
