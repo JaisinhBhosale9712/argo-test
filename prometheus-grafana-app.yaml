@@ -2,22 +2,20 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: prometheus-grafana
-  namespace: argocd
+  namespace: argocd  # Argo CD should be running in this namespace
 spec:
   project: default
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    targetRevision: latest  # Check the latest version
+    targetRevision: 51.2.0  # Check the latest version
     helm:
-      skipCrds: true
       values: |
         grafana:
           adminPassword: "admin"  # Change this in production!
-      # Disable CRDs installation
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring
+    namespace: default
   syncPolicy:
     automated:
       prune: true
