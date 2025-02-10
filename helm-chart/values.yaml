@@ -9,4 +9,4 @@ image:
 
 ingress:
   enabled: true
-  host: flask-app.example.com
+  host: daisei-app.national.com
