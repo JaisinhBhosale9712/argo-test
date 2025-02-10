@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: argocd  # Argo CD should be running in this namespace
+spec:
+  project: default
+  source:
+    repoURL: https://grafana.github.io/helm-charts
+    chart: loki
+    targetRevision: "5.42.0"  # You can update it with the latest version if needed
+    helm:
+      values: |
+        skipCrds: true  # Skip CRDs installation
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default  # Specify the namespace where you want Loki to be deployed
+  syncPolicy:
+    automated:
+      prune: true  # Automatically clean up resources that are no longer in the Git repo
+      selfHeal: true  # Auto heal any drift between the desired and actual state
