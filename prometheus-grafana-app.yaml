@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-grafana2
+  name: daisei-prometheus-grafana
   namespace: argocd  # Argo CD should be running in this namespace
 spec:
   project: default
@@ -13,6 +13,7 @@ spec:
       values: |
         grafana:
           adminPassword: "admin"  # Change this in production!
+      skipCrds: true
   destination:
     server: https://kubernetes.default.svc
     namespace: default
